@@ -1,0 +1,132 @@
+<!--
+  Generated template for the Ordersummary page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Order Summary</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+<!--<ion-list>
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="img/nike2.jpg">
+    </ion-avatar>
+    <h2>Nike Shoes</h2>
+    <button ion-button clear item-right>1</button>
+    <button ion-button clear item-right>Rs. 1,395</button>
+    <button ion-button clear item-right><ion-icon name="close"></ion-icon></button>
+  </ion-item>
+
+  <ion-item>
+    <ion-avatar item-left>
+      <img src="img/GD.jpg">
+    </ion-avatar>
+    <h2>Good Day Biscuits</h2>
+    <button ion-button clear item-right>2</button>
+    <button ion-button clear item-right>Rs. 30</button>
+    <button ion-button clear item-right><ion-icon name="close"></ion-icon></button>
+  </ion-item>
+  <ion-item>
+  </ion-item>
+</ion-list>-->
+<ion-grid>
+  <!--<ion-row wrap text-wrap>
+    <ion-col col-3>
+    </ion-col>
+    <ion-col col-4 text-wrap>
+      Good day biscuitsjgrsfglsjfdhglsfg;sflk;g;ajffgjlkfghafjhg
+    </ion-col>
+    <ion-col col-1>
+      1
+    </ion-col>
+    <ion-col col-3>
+      Rs. 4500
+    </ion-col>
+  </ion-row>
+  <ion-row wrap text-wrap>
+    <ion-col width-20>
+    </ion-col>
+    <ion-col width-40 text-wrap>
+      Good Day Biscuitsaksjfhlakjshgahsgajhfgjahdfghlfhgjshfjhfg
+    </ion-col>
+    <ion-col width-20>
+      2
+    </ion-col>
+    <ion-col width-20>
+      Rs. 30
+    </ion-col>
+  </ion-row>-->
+   <ion-row>
+    <ion-col>
+      <strong>ITEM</strong>
+    </ion-col>
+    <ion-col width-30>
+      <strong>NAME</strong>
+    </ion-col>
+    <ion-col style="text-align:right">
+      <strong>QTY.</strong>
+    </ion-col>
+    <ion-col style="text-align:right">
+     <strong>PRICE</strong>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+  <!--<br>-->
+  <hr>
+  <ion-grid>
+  <ion-row *ngFor="let product of products">
+    <ion-col>
+      <ion-thumbnail item-left>
+      <img src="img/GD.jpg">
+    </ion-thumbnail>
+    </ion-col>
+    <ion-col width-30>
+      {{product.prdName}}
+    </ion-col>
+    <ion-col style="text-align:right">
+      2
+    </ion-col>
+    <ion-col style="text-align:right">
+      {{product.prdPrice}}
+    </ion-col>
+  </ion-row>
+
+ <!--<ion-row>
+    <ion-col>
+      <ion-thumbnail item-left>
+      <img src="img/nike2.jpg">
+    </ion-thumbnail>
+    </ion-col>
+    <ion-col width-30>
+      Niike Shoes
+    </ion-col>
+    <ion-col>
+      1
+    </ion-col>
+    <ion-col>
+      Rs. 4500
+    </ion-col>
+  </ion-row>-->
+
+  </ion-grid>
+</ion-content>
+<ion-footer>
+   <ion-item>
+            <ion-label>Total : </ion-label>
+            <ion-input value={{total}} disabled="true"></ion-input>
+        </ion-item>
+     <ion-item>
+        <button item-right ion-button (click)="proceedToPayment()" style="width: 47%" icon-right>Proceed to Pay<ion-icon name="arrow-forward"></ion-icon></button>
+      </ion-item>
+    <!--<ion-toolbar>
+     
+    </ion-toolbar>-->
+</ion-footer>

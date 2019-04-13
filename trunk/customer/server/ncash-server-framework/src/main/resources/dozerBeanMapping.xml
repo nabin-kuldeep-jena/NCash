@@ -1,0 +1,28 @@
+<!DOCTYPE mappings PUBLIC "-//DOZER//DTD MAPPINGS//EN"
+   "http://dozer.sourceforge.net/dtd/dozerbeanmapping.dtd">
+<mappings>
+  <configuration>
+  	<stop-on-errors>false</stop-on-errors>
+  
+  	<relationship-type>non-cumulative</relationship-type>
+    <custom-converters> <!-- these are always bi-directional -->
+
+      <!-- You are responsible for mapping everything between ClassA and ClassB -->
+      <converter type="com.subex.spark.common.dozer.BigDecimalFloatConverter" >
+        <class-a>java.math.BigDecimal</class-a>
+        <class-b>java.lang.Float</class-b>
+      </converter>
+      <converter type="com.subex.spark.common.dozer.BigDecimalDoubleConverter" >
+        <class-a>java.math.BigDecimal</class-a>
+        <class-b>java.lang.Double</class-b>
+      </converter>
+        <converter type="com.subex.spark.common.dozer.JodaDateTimeDateConverter" >
+        <class-a>org.joda.time.DateTime</class-a>
+        <class-b>java.util.Date</class-b>
+      </converter> 
+    </custom-converters>   
+    
+    
+  </configuration>
+  
+</mappings>

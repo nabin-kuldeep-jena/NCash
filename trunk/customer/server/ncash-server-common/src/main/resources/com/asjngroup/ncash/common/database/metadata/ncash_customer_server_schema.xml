@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" SchemaName="NCash" ServerPackageName="com.asjngroup.ncash.common.database.schema" ClientAssemblyName="" ClientNamespace="" InstanceName="reference" MajorVersion="1" MinorVersion="0" RevisionVersion="0" ServicePack="0" IsExtension="false">
+  <Databases>
+    <Database DatabaseName="ncash" IsObjectMapped="true">
+    	<Tables>
+    		 <Table TableName="next_object_no" TablePrefix="non">
+	          <Columns>
+	            <Column ColumnName="non_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="non_object_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="non_current_no" DataType="Long" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="next_object_no_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="non_object_name" />
+	            <Index IndexName="next_object_no_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="non_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="sequence_num_generator" TablePrefix="sng">
+	          <Columns>
+	            <Column ColumnName="sng_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="sng_object_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sng_start_no" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sng_current_no" DataType="Long" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="sequence_num_generator_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="sng_object_name" />
+	            <Index IndexName="sequence_num_generator_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="sng_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="partition_tbl" TablePrefix="ptn">
+	          <Columns>
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ptn_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="partition_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="ptn_name" />
+	            <Index IndexName="partition_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ptn_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="country_tbl" TablePrefix="ctr">
+	          <Columns>
+	            <Column ColumnName="ctr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ctr_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ctr_iso_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ctr_dial_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+				<Column ColumnName="ctr_max_mobile_no_length" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="country_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="ctr_name" />
+	            <Index IndexName="country_tbl_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="true" ColumnList="ctr_iso_code" />
+	            <Index IndexName="country_tbl_ss2" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="true" ColumnList="ctr_dial_code" />
+	            <Index IndexName="country_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ctr_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="address" TablePrefix="adr">
+	          <Columns>
+	            <Column ColumnName="adr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="cty_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="adr_street1" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="adr_street2" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="adr_street3" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="adr_street4" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="adr_postcode" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="address_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="cty_id,adr_postcode" />
+	            <Index IndexName="address_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="adr_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="application_tbl" TablePrefix="app">
+	          <Columns>
+	            <Column ColumnName="app_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="app_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="app_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="app_logo_img_id" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="application_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="true" ColumnList="app_name" />
+	            <Index IndexName="application_tbl_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="app_code" />
+	            <Index IndexName="application_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="app_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="user_application_access" TablePrefix="uaa">
+	          <Columns>
+	            <Column ColumnName="uaa_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="app_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="uaa_startup_helper" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="uaa_access_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="user_application_access_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="uaa_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="city_tbl" TablePrefix="cty">
+	          <Columns>
+	            <Column ColumnName="cty_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="cty_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ste_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="city_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="cty_name" />
+	            <Index IndexName="city_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="cty_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="state" TablePrefix="ste">
+	          <Columns>
+	            <Column ColumnName="ste_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ctr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ste_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="state_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="ctr_id,ste_name" />
+	            <Index IndexName="state_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ste_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="connected_user" TablePrefix="cus">
+	          <Columns>
+	            <Column ColumnName="cus_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="uli_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="cus_sid" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="app_logo_img_id" DataType="Int" Length="0" IsMandatory="false" IsPrimaryKey="false"/>
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="connected_user_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="cus_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="user_tbl" TablePrefix="usr">
+	          <Columns>
+	            <Column ColumnName="usr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="usr_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_password" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_forename" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_surname" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_email_address" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_mob_no" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_description" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="cty_Id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_expiry_dttm" DataType="DateTime" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_disabled_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_mob_verify_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_email_verify_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_curr_encrypt_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="user_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="usr_id" />
+	            <Index IndexName="user_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="usr_name" />
+	            <Index IndexName="user_tbl_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="true" ColumnList="usr_email_address" />
+	            <Index IndexName="user_tbl_ss2" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="true" ColumnList="usr_mob_no" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="user_registration_tbl" TablePrefix="urt">
+	          <Columns>
+	            <Column ColumnName="urt_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="urt_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_password" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_forename" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_surname" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_email_address" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_mob_no" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="urt_description" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="cty_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="user_registration_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="urt_id" />
+	          </Indexes>
+	        </Table>
+	 		<Table TableName="table_dfn" TablePrefix="tbd">
+	          <Columns>
+	            <Column ColumnName="tbd_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="sch_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tbd_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tbd_prefix" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="table_dfn_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="tbd_name" />
+	            <Index IndexName="table_dfn_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="tbd_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="image_group" TablePrefix="igp">
+	          <Columns>
+	            <Column ColumnName="igp_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="igp_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="image_group_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="igp_name" />
+	            <Index IndexName="image_group_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="igp_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="image_tbl" TablePrefix="img">
+	          <Columns>
+	            <Column ColumnName="img_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="igp_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="img_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="img_path" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="image_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="igp_id,img_name" />
+	            <Index IndexName="image_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="img_path" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="store_tbl" TablePrefix="str">
+	          <Columns>
+	            <Column ColumnName="str_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="str_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="img_Id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="store_tbl_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="str_name" />
+	            <Index IndexName="store_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="str_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="store_branch" TablePrefix="stb">
+	          <Columns>
+	            <Column ColumnName="stb_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="str_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_accepted_cur_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_opening_hours" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_closing_hours" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_adr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="store_branch_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="stb_code" />
+	            <Index IndexName="store_branch_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="stb_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="currency" TablePrefix="cur">
+	          <Columns>
+	            <Column ColumnName="cur_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="cur_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="cur_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="currency_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="cur_code" />
+	            <Index IndexName="currency_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="cur_name" />
+	            <Index IndexName="currency_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="cur_id" />
+	          </Indexes>
+	        </Table>
+	         <Table TableName="store_branch_contact" TablePrefix="stc">
+	          <Columns>
+	            <Column ColumnName="stc_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="stb_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stc_no" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="store_branch_contact_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="stc_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="store_branch_rating" TablePrefix="sbr">
+	          <Columns>
+	            <Column ColumnName="sbr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="stb_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sbr_count" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sbr_value" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sbr_avg" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="store_branch_rating_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="sbr_id" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="store_branch_review" TablePrefix="sbv">
+	          <Columns>
+	            <Column ColumnName="sbv_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="stb_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="usr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sbv_comments" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="sbv_date" DataType="DateTime" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="store_branch_review_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="sbv_id" />
+	          </Indexes>
+	        </Table>
+	     	<Table TableName="order_status" TablePrefix="oss">
+	          <Columns>
+	            <Column ColumnName="oss_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="oss_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oss_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="order_status_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="oss_id" />
+	            <Index IndexName="order_status_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="oss_name" />
+	            <Index IndexName="order_status_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="oss_code" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="order_tbl" TablePrefix="odr">
+	          <Columns>
+	            <Column ColumnName="odr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="uli_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="stb_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_no" DataType="Long" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_created_dttm" DataType="DateTime" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	             <Column ColumnName="odr_updated_dttm" DataType="DateTime" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_total_amt" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_subtotal_amt" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oss_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_external_ref" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_id" DataType="Int" Length="0" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="odr_stb_verification_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="order_tbl_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="odr_id" />
+	            <Index IndexName="order_tbl_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="odr_no" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="item_category" TablePrefix="ica">
+	          <Columns>
+	            <Column ColumnName="ica_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ica_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ica_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ica_taxable_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ica_coupons_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="item_category_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ica_id" />
+	            <Index IndexName="order_status_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="ica_name" />
+	            <Index IndexName="order_status_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ica_code" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="order_item" TablePrefix="oit">
+	          <Columns>
+	            <Column ColumnName="oit_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="odr_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_display_value" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_item_price" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_offered_price" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_barcode" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="oit_quantity" DataType="Int" Length="0" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="ica_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <!-- <Column ColumnName="offer_id" DataType="Int" Length="0" IsMandatory="false" IsPrimaryKey="false" /> -->
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="order_items_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="oit_id" />
+	            <Index IndexName="order_tbl_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="odr_id,oit_barcode" />
+	          </Indexes>
+	        </Table>
+	     	<Table TableName="payment_status" TablePrefix="pss">
+	          <Columns>
+	            <Column ColumnName="pss_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="pss_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pss_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="payment_status_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pss_id" />
+	            <Index IndexName="payment_status_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="pss_name" />
+	            <Index IndexName="payment_status_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pss_code" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="payment_breakdown_category" TablePrefix="pbc">
+	          <Columns>
+	            <Column ColumnName="pbc_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="pbc_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pbc_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pbc_dispay_value" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="payment_breakdown_category_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pbc_id" />
+	            <Index IndexName="payment_breakdown_category_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="pbc_name" />
+	            <Index IndexName="payment_breakdown_category_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pbc_code" />
+	          </Indexes>
+	        </Table>
+	        <Table TableName="transaction_source" TablePrefix="tso">
+	          <Columns>
+	            <Column ColumnName="tso_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="tso_name" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_code" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_url" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_integration_url" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_description" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="transaction_source_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="tso_id" />
+	            <Index IndexName="transaction_source_ak" IsUnique="true" IsClustered="false" IsBusinessConstraint="true" IsDisplayName="true" ColumnList="tso_name" />
+	            <Index IndexName="transaction_source_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="tso_code,tso_url" />
+	          </Indexes>
+	        </Table>
+	     	 <Table TableName="payment_transaction" TablePrefix="ptt">
+	          <Columns>
+	            <Column ColumnName="ptt_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ptt_txn_no" DataType="Long" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_ext_ref" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="uli_id" DataType="Int" Length="0" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_source_ip" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pss_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_dttm" DataType="DateTime" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_amount" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="cur_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptt_description" DataType="String" Length="255" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="payment_transaction_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pss_id" />
+	            <Index IndexName="payment_transaction_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ptt_source_ip,ptt_dttm" />
+	            <Index IndexName="payment_transaction_ss2" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ptt_txn_no" />
+	            <Index IndexName="payment_transaction_ss3" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ptt_ext_ref" />
+	          </Indexes>
+	        </Table>
+			<Table TableName="pmt_trns_brkdwn_details" TablePrefix="pbd">
+	          <Columns>
+	            <Column ColumnName="pbd_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="true" />
+	            <Column ColumnName="ptt_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pbd_amount" DataType="Decimal" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pbc_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="tso_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="pbd_ext_ref" DataType="String" Length="255" IsMandatory="false" IsPrimaryKey="false" />
+	            <Column ColumnName="delete_fl" DataType="Bool" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="version_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	            <Column ColumnName="ptn_id" DataType="Int" Length="0" IsMandatory="true" IsPrimaryKey="false" />
+	          </Columns>
+	          <Indexes>
+	            <Index IndexName="pmt_trns_brkdwn_details_pk" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="pbd_id" />
+	            <Index IndexName="pmt_trns_brkdwn_details_ss1" IsUnique="true" IsClustered="false" IsBusinessConstraint="false" IsDisplayName="false" ColumnList="ptt_id,pbc_id" />
+	          </Indexes>
+	        </Table>
+        </Tables>
+    </Database>
+  </Databases>
+ </Schema>

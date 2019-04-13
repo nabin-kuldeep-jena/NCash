@@ -1,0 +1,52 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+    http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+    http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs">
+
+	<import resource="classpath:ncash-common-datasource.xml" />
+	<import resource="classpath:ncash-common.xml" />
+
+	<bean id="genericController"
+		class="com.asjngroup.ncash.framework.generic.resources.GenericEntityResource">
+		<property name="customizeDataMapperFactory" ref="customizeDataMapperFactory"/>
+	</bean>
+	<bean id="reportController"
+		class="com.asjngroup.ncash.framework.generic.resources.EntityReportResource" />
+
+	<jaxrs:server id="genericUri" address="/gen">
+		<jaxrs:serviceBeans>
+			<ref bean="genericController" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean='jsonProvider' />
+		</jaxrs:providers>
+		<jaxrs:features>
+			<ref bean="swagger2Feature" />
+		</jaxrs:features>
+	</jaxrs:server>
+
+
+	<jaxrs:server id="reportUri" address="/report">
+		<jaxrs:serviceBeans>
+			<ref bean="reportController" />
+		</jaxrs:serviceBeans>
+		<jaxrs:providers>
+			<ref bean='jsonProvider' />
+		</jaxrs:providers>
+		<jaxrs:features>
+			<ref bean="swagger2Feature" />
+		</jaxrs:features>
+	</jaxrs:server>
+
+	<!-- Generic Custom Component -->
+	<bean id="customizeDataMapperFactory"
+		class="com.asjngroup.ncash.framework.generic.custom.component.CustomizeDataMapperFactory"
+		factory-method="getInstance"/>
+</beans>

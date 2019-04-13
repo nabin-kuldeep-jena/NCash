@@ -1,0 +1,5 @@
+1. Download spring sts
+2. Take an check out
+3. Import as a maven project
+4. run mvn clean install
+5. 

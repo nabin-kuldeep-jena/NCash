@@ -1,0 +1,63 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.asjngroup.ncash</groupId>
+		<artifactId>ncash-server</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<artifactId>ncash-server-framework</artifactId>
+	<name>ncash-server-framework</name>
+	<packaging>jar</packaging>
+	<description>Ncash Server framework</description>
+	<version>1.0.0-SNAPSHOT</version>
+	<!-- JAXB plugin to generate-sources from XSD -->
+	<!-- <plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>jaxb2-maven-plugin</artifactId> 
+		<version>1.5</version> <executions> <execution> <goals> <goal>xjc</goal>xjc/generate 
+		</goals> <configuration> <outputDirectory>${basedir}/generated/java/source</outputDirectory> 
+		<schemaDirectory>${basedir}/src/main/resources/com/apache/cxf/spring/security/entities 
+		</schemaDirectory> <schemaFiles>*.xsd</schemaFiles> <schemaLanguage>XMLSCHEMA</schemaLanguage> 
+		<extension>true</extension> <args> <arg>-XtoString</arg> </args> <plugins> 
+		<plugin> <groupId>org.jvnet.jaxb2_commons</groupId> <artifactId>jaxb2-basics</artifactId> 
+		<version>0.6.4</version> </plugin> </plugins> </configuration> </execution> 
+		</executions> </plugin> -->
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<dependencies>
+		<dependency>
+			<groupId>com.asjngroup.ncash</groupId>
+			<artifactId>ncash-server-common</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-security-oauth2-saml</artifactId>
+			<version>${apache-cxf.version}</version>
+		</dependency>
+
+		<!-- External util -->
+		<dependency>
+			<groupId>net.sf.dozer</groupId>
+			<artifactId>dozer</artifactId>
+			<version>${dozor.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-pool</groupId>
+			<artifactId>commons-pool</artifactId>
+			<version>${apache.common-pool.version}</version>
+		</dependency>
+	</dependencies>
+</project>

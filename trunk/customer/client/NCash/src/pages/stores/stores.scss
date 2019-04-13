@@ -1,0 +1,35 @@
+page-stores{
+    .card h2 {
+        color: map-get($colors, bggradient2);
+    }
+    .item-accordion{
+        margin-top: 0px !important;
+        margin-bottom: 0px !important;
+    }
+    .item ion-thumbnail {
+        min-width: 5rem;    
+        min-height: 5rem;
+        img {
+            max-width: 5rem;    
+            min-width: 5rem;
+        }
+        ion-card{
+        ion-icon{
+            position: absolute;
+            text-align: center;
+        }
+        }
+        .details{
+            color:gray;
+        }
+    }
+    .storeopenclose{
+        max-width: 5rem !important;    
+        min-width: 5rem;
+        height:42px;
+    }
+    [padding],
+    [padding] .scroll-content {
+        padding: 6px;
+    }
+}

@@ -1,0 +1,18 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>Mobile Number Verification</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-item style="box-shadow: none; border:none;">
+			<ion-label color="primary">Mobile No</ion-label>
+			<ion-input #mobnum class="mob-num-textbox" type="tel" value="" maxlength="10" size="10" placeholder="##########"></ion-input>
+		</ion-item>
+	</ion-list>
+
+	<div style="text-align: center;">
+		<button [disabled]="mobnum.value.length != 10" ion-button (tap)="verifyNumSendOtp(mobnum.value)">Send OTP</button>
+	</div>
+</ion-content>

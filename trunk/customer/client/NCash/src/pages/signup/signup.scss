@@ -1,0 +1,70 @@
+.alert-md .alert-head {
+  padding: 24px 24px 8px 24px !important;
+}
+.alert-md .alert-message, .alert-md .alert-input-group {
+    padding: 0 24px 8px 24px !important;
+}
+.alert-md .alert-title {
+    font-size: 18px;
+	color:map-get($colors, primary) !important;
+}
+.alert-ios .alert-title {
+    font-size: 18px;
+	color:map-get($colors, primary) !important;
+}
+.alert-wp .alert-title {
+    font-size: 18px;
+	color:map-get($colors, primary) !important;
+}
+.alert-md .alert-button {
+	padding: 5px !important;
+}
+.alert-md .alert-button-group {
+	padding: 8px 8px 8px 8px !important;
+}
+// .alert-md .alert-input {
+//   margin: 5px 0 5px 0;
+//   border-bottom: 1px solid #dedede;
+//   color: #000;
+// }
+page-signup {
+.para-style{
+	background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0, map-get($colors, bggradient1)),color-stop(100,map-get($colors, bggradient2)));
+	.item{
+		background:none;
+		color:white !important;
+		border-bottom: none !important;
+		border-bottom: 1px solid white;
+		padding:0px !important;
+ 	}
+	.item ion-icon{
+	 	color:#a6a3a3 !important;
+	}
+	.item-md ion-icon[item-left] + .item-inner,
+	.item-md ion-icon[item-left] + .item-input {
+  		margin-left: 8px !important;
+	}
+	.item > ion-icon, .item-inner > ion-icon {
+    	font-size: 2.2rem !important;
+	}
+	.button-styling{
+		background-image:-webkit-gradient(linear, left top, left bottom, color-stop(0,map-get($colors, fggradient1)), color-stop(50,map-get($colors, fggradient2)), color-stop(100, map-get($colors, fggradient3)));
+		border-radius: 5px;
+		height: 4.6rem;
+	}
+	.input{
+		color:white !important;
+		border-bottom:none !important;
+	}
+	.input[clearInput] .text-input {
+    	padding-right: 3px;
+   	}
+	.label{
+		margin-left:8px;
+	}
+    p{
+		color: #ef0202;
+	}
+	
+  }
+}

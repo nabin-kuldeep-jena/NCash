@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<!-- SessionFactory setup in a Spring container -->
+
+	<beans>
+
+
+		<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
+			<property name="poolName" value="ncashHikariCP" />
+			<property name="connectionTestQuery" value="SELECT 1" />
+			<property name="dataSourceClassName" value="${hibernate.dataSourceClassName}" />
+			<property name="maximumPoolSize" value="${hibernate.hikari.maximumPoolSize}" />
+			<property name="idleTimeout" value="${hibernate.hikari.idleTimeout}" />
+
+			<property name="dataSourceProperties">
+				<props>
+					<prop key="url">${dataSource.url}</prop>
+					<prop key="user">${dataSource.username}</prop>
+					<prop key="password">${dataSource.password}</prop>
+				</props>
+			</property>
+		</bean>
+		<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+			<constructor-arg index="0" ref="hikariConfig" />
+		</bean>
+
+		<!-- Hibernate Session factory configuration -->
+		<bean id="sessionFactory"
+			class="com.asjngroup.ncash.common.database.hibernate.NCashSessionFactoryBean">
+			<property name="dataSource" ref="dataSource" />
+			<property name="annotatedClasses">
+				<list>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.Address
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.ApplicationTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.CityTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.ConnectedUser
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.CountryTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.Currency
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.EmailValidationToken
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.ImageGroup
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.ImageTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.NextObjectNo
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.PartitionTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.ProductTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.State
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.StoreBranch
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.StoreBranchContact
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.StoreBranchRating
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.StoreBranchReview
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.StoreTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.TableColumn
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.TableDfn
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.TableIndex
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.TableIndexColumn
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.TableInst
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserApplicationAccess
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserExtraDetail
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserLoginInfo
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserPassword
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserRegistrationTbl
+					</value>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.UserTbl
+					</value>
+				</list>
+			</property>
+			<property name="packagesToScan">
+				<list>
+					<value>com.asjngroup.ncash.common.database.hibernate
+					</value>
+				</list>
+			</property>
+			<property name="annotatedPackages">
+				<list>
+					<value>com.asjngroup.ncash.common.database.hibernate.references.*
+					</value>
+				</list>
+			</property>
+			<property name="hibernateProperties">
+				<props>
+					<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+					<prop key="hibernate.show_sql">${hibernate.show_sql:false}</prop>
+					<prop key="hibernate.format_sql">${hibernate.format_sql:false}</prop>
+				</props>
+			</property>
+		</bean>
+		<bean id="hibernateInfo"
+			class="com.asjngroup.ncash.common.database.hibernate.util.HibernateInfo"
+			scope="singleton">
+			<constructor-arg index="0" ref="sessionFactory" />
+			<constructor-arg index="1" ref="dataSource" />
+			<constructor-arg index="2" ref="idGenerator" />
+		</bean>
+
+		<bean
+			class="com.asjngroup.ncash.common.database.hibernate.util.HibernateSession"
+			factory-method="initialise">
+			<constructor-arg ref="hibernateInfo" index="0" />
+		</bean>
+		
+		<bean id="transactionManager"
+			class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+			<property name="sessionFactory" ref="sessionFactory" />
+		</bean>
+
+		<bean id="persistenceExceptionTranslationPostProcessor"
+			class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
+
+		<bean id="idGenerator"
+			class="com.asjngroup.ncash.common.database.helper.MysqlIdGenerator" />
+
+		
+	</beans>
+</beans>

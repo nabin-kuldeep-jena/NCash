@@ -1,0 +1,118 @@
+<!--
+  Generated template for the Signup page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Sign Up</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="para-style">
+    <form [formGroup]="signUpForm" (ngSubmit)="doSignUp(signUpForm)">
+      
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-input formControlName="firstName" type="text" placeholder="First Name *" clearInput no-padding></ion-input>
+      </ion-item>
+      <div *ngIf="signUpForm.controls.firstName.dirty && !signUpForm.controls.firstName.valid">
+        <p *ngIf="signUpForm.controls.firstName.errors.pattern" style="text-align: center;">
+          Can contain only alphabets
+        </p>
+      </div>
+      
+      <ion-item>
+        <ion-icon name="person" item-left></ion-icon>
+        <ion-input formControlName="lastName" type="text" placeholder="Last Name *" clearInput></ion-input>
+      </ion-item>
+      <div *ngIf="signUpForm.controls.lastName.dirty && !signUpForm.controls.lastName.valid">
+        <p *ngIf="signUpForm.controls.lastName.errors.pattern" style="text-align: center;">
+          Can contain only alphabets
+        </p>
+      </div>
+      
+      <ion-item>
+        <ion-icon name="podium" item-left></ion-icon>
+        <ion-label fixed>Country *</ion-label>
+        <ion-select disabled="{{isCountryDisabled}}" placeholder="Select" [(ngModel)]="selectedCtrId" (ionChange)="onChangeCountry($event)" formControlName="preferredCountry">>
+           <ion-option *ngFor="let country of countries" value="{{country.ctrId}}">{{country.ctrName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-icon name="podium" item-left></ion-icon>
+        <ion-label fixed>State *</ion-label>
+        <ion-select disabled="{{isStateDisabled}}" placeholder="Select" [(ngModel)]="selectedSteId" (ionChange)="onChangeState()" formControlName="preferredState">>
+           <ion-option *ngFor="let state of states" value="{{state.steId}}">{{state.steName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-icon name="podium" item-left></ion-icon>
+        <ion-label fixed>City *</ion-label>
+        <ion-select disabled="{{isCityDisabled}}" placeholder="Select" [(ngModel)]="selectedCtyId" formControlName="preferredCity">
+          <ion-option *ngFor="let city of cities" value="{{city.ctyId}}">{{city.ctyName}}</ion-option>
+        </ion-select>
+      </ion-item>
+      
+      <ion-item>
+        <ion-icon name="call" item-left></ion-icon>
+        <ion-label fixed>{{ctrDialCode}}</ion-label>
+        <ion-input formControlName="mobileNumber" type="number" placeholder="Mobile Number *" (focus)="onFocus($event)" (focusout)="onMobileNoFocusOut($event)" clearInput></ion-input>
+      </ion-item>
+       <p *ngIf="signUpForm.controls.mobileNumber.value.length > maxMobileNoLength" style="text-align: center;">
+         Maximum {{maxMobileNoLength}} digits are allowed
+      </p>
+      
+      <ion-item>
+       <ion-icon name="mail" item-left></ion-icon>
+        <ion-input formControlName="email" type="email" placeholder="Email *" (focus)="onFocus($event)" clearInput></ion-input>
+      </ion-item>
+      <div *ngIf="signUpForm.controls.email.dirty && !signUpForm.controls.email.valid">
+        <p *ngIf="signUpForm.controls.email.errors.pattern" style="text-align: center;">
+          Invalid email format
+        </p>
+      </div>
+      
+      <ion-item>
+        <ion-icon name="eye-off" item-left></ion-icon>
+        <ion-input formControlName="password" type="password" placeholder="Password *" clearInput></ion-input>
+      </ion-item>
+      <div *ngIf="signUpForm.controls.password.dirty && !signUpForm.controls.password.valid">
+        <p *ngIf="signUpForm.controls.password.errors.minlength" style="text-align: center;">
+          Password should be of minimum 6 length
+        </p>
+      </div>
+      
+      <ion-item>
+        <ion-icon name="eye-off" item-left></ion-icon>
+        <ion-input formControlName="confirmPassword" type="password" placeholder="Confirm Password *" clearInput></ion-input>
+      </ion-item>
+      <div *ngIf="signUpForm.controls.confirmPassword.dirty && !signUpForm.controls.confirmPassword.valid">
+        <p *ngIf="signUpForm.controls.password.value != signUpForm.controls.confirmPassword.value && signUpForm.controls.confirmPassword.value!=''"
+          style="text-align: center;">
+          Passwords didn't match
+        </p>
+      </div>
+
+      <p *ngIf="unSuccesfulRegistration" style="text-align: center;">{{responseErrMessage}}</p>
+      <br *ngIf="!unSuccesfulRegistration">
+      <ion-row>
+        <ion-col>
+        </ion-col>
+        <ion-col>
+          <!--<button ion-button round [disabled]="!signUpForm.valid">-->
+            <button ion-button round>
+              Sign Up
+          </button>
+        </ion-col>
+        <ion-col>
+        </ion-col>
+      </ion-row>
+    </form>
+</ion-content>

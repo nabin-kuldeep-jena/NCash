@@ -1,0 +1,22 @@
+page-ordersummary {
+.label-md {
+    margin: 13px 8px 13px 13px;
+	color: map-get($colors , primary ) !important;
+	font-size: 2.0rem;
+}
+.item h2 {
+     max-width: 5rem;
+}
+img {
+  max-height: 50px;
+  max-width: 50px
+}
+ion-col {
+  //text-align: center !important;
+  &[width-30]{
+  display: block;
+  flex: 0 0 40%;
+  max-width: 30% !important;
+  }
+}
+}

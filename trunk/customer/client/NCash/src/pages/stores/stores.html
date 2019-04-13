@@ -1,0 +1,105 @@
+<ion-header>
+    <ion-navbar color="primary" hideBackButton="true">
+        <!--<ion-buttons left>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        </ion-buttons>-->
+        <ion-title>Stores</ion-title>
+
+        <ion-buttons end>
+            <button ion-button icon-right (click)="showCities()">{{selectedCity}}
+                <ion-icon name="md-arrow-dropdown"> </ion-icon>
+            </button>
+            <button ion-button icon-only (click)="presentPopover($event)">
+                <ion-icon name="more"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <ion-toolbar color="primary">
+        <ion-searchbar [(ngModel)]="queryText" (ionInput)="getItems($event)" placeholder="Search based on store or area..."></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>     
+    <!--<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>-->
+
+
+<!--<ion-grid *ngFor="let storeBranch of storeBranches">
+    <ion-row>
+    <ion-col width-25>   
+        <ion-thumbnail>
+        <img src="img/more.jpg">
+        </ion-thumbnail>
+    </ion-col>
+    <ion-col>
+        <ion-row>
+        <b>{{storeBranch.storeTbl.strName}}</b>
+        </ion-row>
+        <ion-row class="store-address">
+        {{storeBranch.address.adrStreet1}},{{storeBranch.address.adrStreet2}},{{storeBranch.address.adrStreet3}},{{storeBranch.address.adrStreet4}}-{{storeBranch.address.adrPostcode}}
+        </ion-row>
+    </ion-col>
+</ion-row>
+<ion-row>
+    <ion-col  width-80>
+        {{storeBranch.stbOpeningHours}}-{{storeBranch.stbClosingHours}}
+    </ion-col>
+    <ion-col>
+       <span *ngIf="storeBranch.isStoreOpenNow">Open</span>
+       <span *ngIf="!storeBranch.isStoreOpenNow">Closed</span>
+    </ion-col>
+</ion-row>
+</ion-grid>-->
+ <!--<ion-list *ngFor="let storeBranch of storeBranches">
+        <ion-item (click)="gotoItemPage()">
+            <ion-thumbnail item-left>
+                <img src="img/more.jpg">
+            </ion-thumbnail>
+            <h2>{{storeBranch.storeTbl.strName}}</h2>
+            <p>{{storeBranch.address.adrStreet4}}</p>
+            <p *ngIf="storeBranch.isStoreOpenNow">Open</p>
+            <p *ngIf="!storeBranch.isStoreOpenNow">Closed</p>
+        </ion-item>
+</ion-list>-->
+<ion-card *ngFor="let storeBranch of storeBranches">
+   <!--<ion-item class="item-thumbnail-left item-text-wrap">
+       <img src="img/more.jpg" class="customized-image">-->
+       <ion-item (click)="gotoItemPage()">
+    <ion-thumbnail item-left no-margin>
+        <img [src]="storeBranch.storeTbl.imageTbl.imgURL">
+        <!--<img src="img/more.jpg">-->
+    </ion-thumbnail>
+   <h2><b>{{storeBranch.storeTbl.strName}}</b></h2>
+    <!--<p>Hours Today:{{storeBranch.stbOpeningHours}}-{{storeBranch.stbClosingHours}}</p>-->
+     <p item-right *ngIf="storeBranch.isStoreOpenNow"><img src="img/open6.png" class="storeopenclose"></p>
+          <!--style="color:limegreen">Open</p>-->
+     <p item-right *ngIf="!storeBranch.isStoreOpenNow"><img src="img/closed6.png" class="storeopenclose"></p>
+          <!--style="color:red">Closed</p>-->
+    <p>{{storeBranch.address.adrStreet4}}</p>
+</ion-item>
+
+<ion-item (click)="toggleDetails(storeBranch)" text-wrap>
+    <!--<button ion-button *ngIf="!storeBranch.showDetails" clear icon-right>
+        <ion-icon [name]="storeBranch.detailIconName" class="item-accordion"></ion-icon> 
+        View More 
+    </button>-->
+    <!--<p *ngIf="!storeBranch.showDetails"><i>View More </i></p>-->
+    <!--<p *ngIf="storeBranch.showDetails"> View Less </p>-->
+    <!--<ion-icon item-right [name]="storeBranch.detailIconName" class="item-accordion"></ion-icon>-->
+
+    <p class="details"><b>Hours Today : </b>{{storeBranch.stbOpeningHours}}-{{storeBranch.stbClosingHours}}</p>
+    <ion-icon item-right [name]="storeBranch.detailIconName" class="item-accordion"></ion-icon>
+    
+    <!--<p *ngIf="storeBranch.showDetails"><b>Hours Today : </b>{{storeBranch.stbOpeningHours}}-{{storeBranch.stbClosingHours}}<ion-icon [name]="storeBranch.detailIconName" class="item-accordion"></ion-icon>  </p>-->
+    <p class="details" *ngIf="storeBranch.showDetails"><b>Address : </b>{{storeBranch.address.adrStreet1}},{{storeBranch.address.adrStreet2}},{{storeBranch.address.adrStreet3}},{{storeBranch.address.adrStreet4}}-{{storeBranch.address.adrPostcode}}</p>
+</ion-item>
+     <!-- <button ion-item (click)="toggleDetails(storeBranch)" text-wrap>
+         <ion-icon item-right [name]="storeBranch.detailIconName" class="item-accordion"></ion-icon>
+         <p><b>Hours Today : </b>{{storeBranch.stbOpeningHours}}-{{storeBranch.stbClosingHours}}</p>
+     </button>>
+    <button ion-item *ngIf="storeBranch.showDetails" text-wrap>
+         <p><b>Address :</b> {{storeBranch.address.adrStreet1}},{{storeBranch.address.adrStreet2}},{{storeBranch.address.adrStreet3}},{{storeBranch.address.adrStreet4}}-{{storeBranch.address.adrPostcode}}</p>
+     </button>-->
+</ion-card>
+</ion-content>

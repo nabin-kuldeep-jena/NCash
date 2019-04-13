@@ -1,0 +1,28 @@
+<ion-header>
+    <ion-navbar color="primary" hideBackButton="true">
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>ToDo List</ion-title>
+        <ion-buttons end>
+            <button ion-button right (click)="addTask()">
+                <ion-icon name="add" md="md-add"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let task of todoList">
+            <ion-label>{{task.name}}</ion-label>
+            <ion-checkbox [(ngModel)]="task.isDone"></ion-checkbox>
+        </ion-item>
+    </ion-list>
+</ion-content>
+
+<ion-footer *ngIf="todoList.length > 0">
+    <ion-toolbar class="center">
+        <button ion-button (click)="deleteTodoItems()" style="width: 11%;"><ion-icon name="trash"></ion-icon></button>
+    </ion-toolbar>
+</ion-footer>

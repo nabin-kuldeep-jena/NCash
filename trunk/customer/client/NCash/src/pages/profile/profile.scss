@@ -1,0 +1,48 @@
+page-profile{
+    .item-input .label-md, .item-select .label-md, .item-datetime .label-md {
+        color: map-get($colors, primary);
+    }
+    .item > ion-icon, .item-inner > ion-icon {
+        min-height: 2.8rem;
+        font-size: 2.2rem !important;
+        line-height: 1;
+    }
+    .item ion-icon{
+	 	color:map-get($colors, primary ) !important;
+	}
+	.item-md ion-icon[item-left] + .item-inner,
+	.item-md ion-icon[item-left] + .item-input {
+  		margin-left: 8px !important;
+	}
+    .item{
+		padding:0px !important;
+ 	}
+    .item img {
+            max-width: 2rem;    
+            min-width: 2rem;
+    }
+    ion-fab[right] {
+        right: 30px !important;
+    }
+    ion-fab[bottom] {
+        bottom: 20px !important;   
+    }
+    .fab-md.fab-in-list {
+        background-color: map-get($colors , primary ) !important;
+    }
+    .list-header {
+        margin-bottom: 0px !important;
+        //border-top: 0px !important;
+        //border-top: 1px solid #dedede !important;
+        border-bottom: 1px solid #dedede !important;
+    }
+    .unconfirmed-email{
+        font-size: 1.2rem;
+        text-align: center;
+        color: red !important;
+    }
+    //  p{
+    //     //text-align: right;
+    //     color: red !important;
+    // }
+}

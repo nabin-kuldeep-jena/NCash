@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+
+	<bean id="commonConfigProperties"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath:hibernate.properties</value>
+				<value>classpath:ncashSWDocConfig.properties</value>
+				<value>classpath:ncashServerProperty.properties</value>
+				<value>classpath:ncashMessagingConfig.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider" />
+	<!-- CXF Swagger2Feature -->
+	<bean id="swagger2Feature" class="org.apache.cxf.jaxrs.swagger.Swagger2Feature">
+		<!-- customize some of the properties -->
+		<property name="basePath" value="${ncash.swdoc.basepath}" />
+		<property name="host" value="${ncash.swdoc.host}" />
+		<property name="version" value="${ncash.swdoc.version}" />
+		<property name="title" value="${ncash.swdoc.title}" />
+		<property name="description" value="${ncash.swdoc.description}" />
+		<property name="contact" value="${ncash.swdoc.contact}" />
+		<property name="license" value="${ncash.swdoc.license}" />
+		<property name="licenseUrl" value="${ncash.swdoc.licenseUrl}" />
+	</bean>
+
+</beans>

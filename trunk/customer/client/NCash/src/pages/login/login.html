@@ -1,0 +1,31 @@
+<ion-header no-shadow>
+</ion-header>
+
+<ion-content padding class="para-styling">
+        <br>
+        <br>
+        <ion-img width="120" height="100" src="img/NoQ1.png" class="image_align"></ion-img>
+        <br>
+        <br>
+        <form [formGroup]="loginForm" (ngSubmit)="doLogin(loginForm)" novalidate>
+            <ion-input formControlName="IP" type="text" placeholder="IP" clearInput></ion-input>
+            <ion-input formControlName="port" type="number" placeholder="port" clearInput></ion-input>
+            <ion-item>
+                <ion-icon name="call" item-left></ion-icon>
+                <ion-input placeholder="Mobile No.*" type="text" formControlName="mobileNumber" name="mobileNumber" (focus)="onFocus($event)"  clearInput></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-icon name="eye-off" item-left></ion-icon>
+                <ion-input placeholder="Password *" type="password" formControlName="password" name="password" (focus)="onFocus($event)" clearInput></ion-input>
+            </ion-item>
+            <p *ngIf="unSuccesfulLogin" style="text-align: center;">{{responseErrMessage}}</p>
+            <br *ngIf="!unSuccesfulLogin">
+            <br>
+            <button ion-button block type="submit" class="button-styling">Login</button>
+        </form>
+        <br>
+        <div>
+            <a (tap)="forgotPassword(loginForm)">Forgot Password?</a>  <a (tap)="signUp(loginForm)">I want an account!</a>
+        </div>
+</ion-content>

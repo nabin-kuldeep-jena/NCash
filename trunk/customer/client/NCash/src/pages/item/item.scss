@@ -1,0 +1,10 @@
+page-item{
+.countButton {
+	width: 33px;
+}
+.label-md {
+    margin: 13px 8px 13px 13px;
+	color: map-get($colors , primary ) !important;
+	font-size: 2.0rem;
+}
+}

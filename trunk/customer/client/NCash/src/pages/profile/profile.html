@@ -1,0 +1,144 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <!--<button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>-->
+
+        <ion-title>Account Settings</ion-title>
+    </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+          <ion-list-header style='border-top:0px !important'>
+            General
+        </ion-list-header>
+        <ion-item>
+            <!--<ion-label><ion-icon name="person"></ion-icon></ion-label>-->
+            <ion-icon name="person" item-left></ion-icon>
+            <ion-input disabled=true type="text" value="{{loggedInUser.usrForename}} {{loggedInUser.usrSurname}}"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <!--<ion-label><ion-icon name="mail"></ion-icon></ion-label>-->
+            <!--<ion-icon name="mail" item-left></ion-icon>
+            <ion-label disabled="true" *ngIf="isEmailFieldDisabled">{{loggedInUser.usrEmailAddress}}</ion-label>
+            <ion-icon *ngIf="isEmailFieldDisabled" name="create" item-right color="primary" (click)="editEmail()"></ion-icon>
+            
+            <ion-input *ngIf="!isEmailFieldDisabled" type="text" value="{{loggedInUser.usrEmailAddress}}"></ion-input>
+            <ion-icon *ngIf="!isEmailFieldDisabled" name="checkmark" item-right color="primary" (click)="updateEmail()"></ion-icon>
+            <p>Not Verified</p>-->
+            <ion-icon name="mail" item-left></ion-icon>
+            <img *ngIf="!loggedInUser.usrEmailVerifyFl && !isEmailFieldInEditMode" src="img/not-verified2.png" item-right>
+            <ion-icon *ngIf="!isEmailFieldInEditMode" name="create" item-right color="primary" (click)="editEmail()"></ion-icon>
+            <ion-input *ngIf="isEmailFieldInEditMode" type="text" value="{{loggedInUser.usrEmailAddress}}"></ion-input>
+
+            <ion-input *ngIf="!isEmailFieldInEditMode" disabled=true type="text" value="{{loggedInUser.usrEmailAddress}}"></ion-input>
+
+            <!--<h2 *ngIf="!isEmailFieldInEditMode" disabled="true">{{loggedInUser.usrEmailAddress}}</h2>-->
+            <ion-icon *ngIf="isEmailFieldInEditMode" name="checkmark" item-right color="primary" (click)="updateEmail()"></ion-icon>
+            
+        </ion-item>
+        <!--<p class="unconfirmed-email" *ngIf="!loggedInUser.usrEmailVerifyFl && !isEmailFieldInEditMode" no-padding>*Awaiting Email Verification</p>   -->
+
+        <ion-item>
+            <!--<ion-label><ion-icon name="call"></ion-icon></ion-label>-->
+            <ion-icon name="call" item-left></ion-icon>
+            <ion-input disabled=true type="tel" value="{{loggedInUser.usrMobNo}}" maxlength="10"></ion-input>
+            <ion-icon name="create" item-right color="primary"></ion-icon>
+        </ion-item>
+    </ion-list>
+   
+    <ion-list>
+         <ion-list-header>
+            Preferred Location
+        </ion-list-header>
+        <ion-item>
+            <ion-icon name="podium" item-left></ion-icon>
+            <ion-select [(ngModel)]="selectedCtrId" placeholder="Select" (ionChange)="onChangeCountry()">
+                <ion-option *ngFor="let country of countries" value="{{country.ctrId}}">{{country.ctrName}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <!--<ion-label><ion-icon name="podium"></ion-icon></ion-label>-->
+            <ion-icon name="podium" item-left></ion-icon>
+            <!--<ion-input disabled=true type="text" value="{{loggedInUser.cityTbl.state.steName}}"></ion-input>
+            <ion-icon name="create" item-right color="primary"></ion-icon>-->
+            <ion-select placeholder="Select" [(ngModel)]="selectedSteId" (ionChange)="onChangeState()">
+                <ion-option *ngFor="let state of states" value="{{state.steId}}">{{state.steName}}</ion-option>
+            </ion-select>
+        </ion-item>
+
+        <ion-item>
+            <!--<ion-label><ion-icon name="podium"></ion-icon></ion-label>-->
+            <ion-icon name="podium" item-left></ion-icon>
+            <ion-select placeholder="Select"  [(ngModel)]="selectedCtyId">
+                <ion-option *ngFor="let city of cities" value="{{city.ctyId}}">{{city.ctyName}}</ion-option>
+            </ion-select>
+            <!--<ion-input disabled=true type="text" value="{{loggedInUser.cityTbl.ctyName}}"></ion-input>
+            <ion-icon name="create" item-right color="primary"></ion-icon>-->
+        </ion-item>
+    </ion-list>
+    <ion-list>
+        <ion-list-header>
+            Other Options
+        </ion-list-header>
+         <!--<ion-item (click)="changeCountry()">
+            <ion-label><ion-icon name="eye-off"></ion-icon></ion-label>
+            <ion-icon name="podium" item-left></ion-icon>
+            <ion-input disabled=true  type="text" value="Change Country"></ion-input>
+            <ion-input disabled=true type="text" value="{{loggedInUser.usrPassword}}"></ion-input>
+            <ion-icon name="ios-arrow-forward" item-right color="primary" (click)="changePassword()"></ion-icon>
+        </ion-item>-->
+
+         <ion-item (click)="changePassword()">
+            <!--<ion-label><ion-icon name="eye-off"></ion-icon></ion-label>-->
+            <ion-icon name="eye-off" item-left></ion-icon>
+            <ion-input disabled=true  type="text" value="Change Password"></ion-input>
+            <!--<ion-input disabled=true type="text" value="{{loggedInUser.usrPassword}}"></ion-input>-->
+            <!--<ion-icon name="ios-arrow-forward" item-right color="primary" (click)="changePassword()"></ion-icon>-->
+        </ion-item>
+
+        <ion-item>
+            <!--<ion-label><ion-icon name="trash"></ion-icon></ion-label>-->
+            <ion-icon name="trash" item-left></ion-icon>
+            <ion-input disabled=true  type="text" value="Account Active"></ion-input>
+            <ion-toggle checked="true"></ion-toggle>
+            <!--<ion-input disabled=true type="text" value="{{loggedInUser.usrPassword}}"></ion-input>-->
+            <!--<ion-icon name="ios-arrow-forward" item-right color="primary"></ion-icon>-->
+        </ion-item>
+
+        <ion-item>
+        </ion-item>
+    </ion-list>
+
+<!--<div>
+    style="text-align: center;">
+        <button ion-button (click)="saveSettings()">Save Changes</button>
+    </div>-->
+    <!--<hr style="border-top: 1px dashed;" />-->
+
+    <!--<div>
+        <ion-list>
+            <ion-item (click)="changePassword()">Change Password</ion-item>
+            <ion-item (click)="deactivateAccount()">Deactivate Account</ion-item>
+        </ion-list>
+    </div>-->
+
+    <!--<ion-fab right bottom>
+        <button ion-fab><ion-icon name="create"></ion-icon></button>
+        <ion-fab-list side="left">
+            <button ion-fab><ion-icon name="trash" color="light"></ion-icon></button>
+            <button ion-fab><ion-icon name="eye-off" color="light"></ion-icon></button>
+            <button ion-fab (click)="editPreferredCity()"><ion-icon name="podium" color="light"></ion-icon></button>
+            <button ion-fab><ion-icon name="call" color="light"></ion-icon></button>
+            <button ion-fab><ion-icon name="mail" color="light"></ion-icon></button>
+            
+            
+            
+            
+        </ion-fab-list>
+    </ion-fab>-->
+</ion-content>  

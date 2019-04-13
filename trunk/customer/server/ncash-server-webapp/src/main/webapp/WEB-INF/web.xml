@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+
+	<display-name>NCash Customer server</display-name>
+
+	<!-- The definition of the Root Spring Container shared by all Servlets 
+		and Filters -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+            /WEB-INF/ncash-entrypoint-services.xml
+        </param-value>
+	</context-param>
+
+	<!-- Creates the Spring Container shared by all Servlets and Filters -->
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
+
+	<!-- Spring Based Ncash Security Filter -->
+	<!-- <filter> <filter-name>ncashSecurityFilter</filter-name> <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class> 
+		</filter> <filter-mapping> <filter-name>ncashSecurityFilter</filter-name> 
+		<url-pattern>/*</url-pattern> <dispatcher>REQUEST</dispatcher> <dispatcher>FORWARD</dispatcher> 
+		<dispatcher>INCLUDE</dispatcher> <dispatcher>ERROR</dispatcher> </filter-mapping> -->
+
+	<!-- Apache CXF -->
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
+
+	<filter>
+		<filter-name>Ncash Common Filter</filter-name>
+		<filter-class>com.asjngroup.ncash.framework.security.controller.NCashCommonFilter</filter-class>
+	</filter>
+	<filter-mapping>
+		<filter-name>Ncash Common Filter</filter-name>
+		<url-pattern>/services/*</url-pattern>
+	</filter-mapping>
+
+	<servlet>
+		<servlet-name>emailActivation</servlet-name>
+		<jsp-file>/WEB-INF/email/activation/activateEmail.jsp</jsp-file>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>emailActivation</servlet-name>
+		<url-pattern>/confirmEmail</url-pattern>
+	</servlet-mapping>
+
+	<!-- welcome file list -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+
+</web-app>

@@ -1,0 +1,7 @@
+<metadata name="ROCPS" majorVersion="10" minorVersion="0" revisionVersion="0">
+	<database>
+		<databaseSchemas>
+			<databaseSchema path="/com/asjngroup/ncash/common/database/metadata/ncash_customer_schema.xml" />
+		</databaseSchemas>
+	</database>
+</metadata>

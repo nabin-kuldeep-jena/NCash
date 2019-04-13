@@ -1,0 +1,56 @@
+<ion-header>
+    <ion-navbar color="primary">
+        <!--<button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>-->
+
+        <ion-title>Products</ion-title>
+        <!-- <ion-searchbar *ngIf="showHideSearchBar()" (ionInput)="searchItems($event)"></ion-searchbar> -->
+        <ion-buttons end>  
+            <button ion-button right [disabled]="products.length == 0" (click)="clearCart()">
+                <ion-icon name="trash"></ion-icon>
+            </button>
+        </ion-buttons>
+        <!-- <button ion-button menuToggle right (click)="moreAction($event)">
+            <ion-icon name="trash"></ion-icon>
+            <ion-icon name="more"></ion-icon>
+        </button> -->
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <ion-list>
+        <ion-item-sliding *ngFor="let product of products">
+            <ion-item (dblclick)="showProductDetails(product)">
+                <ion-avatar item-left>
+                    <img src="img/{{product.img}}.jpg">
+                </ion-avatar>
+                <h2>{{product.name}}</h2>
+                
+                <button ion-button outline item-right (click)="decreaseCount($event, product)" class="countButton">-</button>
+                <button ion-button clear item-right>{{product.count}}</button>
+                <button ion-button outline item-right (click)="increaseCount($event, product)" class="countButton">+</button>
+                
+            </ion-item>
+            <ion-item-options side="right">
+                <button ion-button color="danger" (click)="deleteItem(product)">Delete<!-- <ion-icon name="trash"></ion-icon> --></button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <!--<button ion-button (click)="scanCardIO()">CardIO</button>-->
+    
+</ion-content>
+
+<ion-footer>
+    
+    <ion-toolbar>
+        <!--<ion-label fixed><b>SubTotal :</b></ion-label>-->
+        <ion-item>
+            <ion-label text-right>Subtotal : </ion-label>
+            <ion-input value={{total}} disabled="true"></ion-input>
+        </ion-item>
+        <button ion-button (click)="scanProduct()" style="width: 47%" icon-right>Scan <ion-icon name="qr-scanner"></ion-icon></button>
+        <button  ion-button (click)="proceedToOrderSummary()" style="width: 47%" icon-right>Checkout<ion-icon name="arrow-forward"></ion-icon></button>
+        <!-- [disabled]="products.length == 0"-->
+    </ion-toolbar>
+</ion-footer>

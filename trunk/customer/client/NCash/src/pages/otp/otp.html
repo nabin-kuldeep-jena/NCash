@@ -1,0 +1,24 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>Verification</ion-title>
+	</ion-navbar>
+</ion-header>
+
+<ion-content padding>
+	<ion-list>
+		<ion-item style="box-shadow: none;">
+			<ion-label color="primary" fixed>Enter OTP</ion-label>
+			<ion-input #otp class="otp-textbox" type="tel" value="" maxlength="6" size="6" placeholder="######"></ion-input>
+		</ion-item>
+	</ion-list>
+
+	<ion-row>
+        <ion-col></ion-col>
+
+        <ion-col>
+        	<button ion-button (click)="verifyOtp(otp.value)">Verify</button>
+        </ion-col>
+
+        <ion-col></ion-col>
+    </ion-row>
+</ion-content>

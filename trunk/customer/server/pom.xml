@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.asjngroup.ncash</groupId>
+	<artifactId>ncash-server</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+
+		<!-- Generic properties -->
+		<ncash.version>1.0.0-SNAPSHOT</ncash.version>
+		<java.version>1.8</java.version>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+		<!-- Javax Version -->
+		<javax.mail.version>1.4</javax.mail.version>
+
+		<!-- Web -->
+		<jsp.version>2.2</jsp.version>
+		<jstl.version>1.2</jstl.version>
+		<servlet.version>2.5</servlet.version>
+		<jackson.version>1.9.0</jackson.version>
+
+		<!-- Restfule WebService -->
+		<javax-ws-rs.version>2.0.1</javax-ws-rs.version>
+
+
+		<!-- Spring -->
+		<spring-framework.version>4.2.0.RELEASE</spring-framework.version>
+		<spring.security.version>4.2.0.RELEASE</spring.security.version>
+		<springsecurityoauth2.version>2.0.4.RELEASE</springsecurityoauth2.version>
+		<!-- <cxf.oauth.version>3.1.7</cxf.oauth.version> -->
+		<!-- Spring Integration 3rd party -->
+		<thymeleaf-spring4.version>3.0.3.RELEASE</thymeleaf-spring4.version>
+
+		<!-- Apache CXF -->
+		<apache-cxf.version>3.1.8</apache-cxf.version>
+
+		<!-- Hibernate / JPA -->
+		<hibernate.version>4.3.0.Final</hibernate.version>
+
+		<!-- DataSource and Db related version -->
+		<hikaricp.version>2.2.5</hikaricp.version>
+
+		<!--3rd party related -->
+		<joda-time.version>2.3</joda-time.version>
+		<usertype-jodatime.version>2.0.1</usertype-jodatime.version>
+		<dom4j.version>1.6.1</dom4j.version>
+
+		<!-- Logging -->
+		<logback.version>1.1.8</logback.version>
+		<log4j.version>1.7.5</log4j.version>
+
+		<!-- Test -->
+		<junit.version>4.11</junit.version>
+
+		<!-- Documentation -->
+		<swagger.version>3.1.7</swagger.version>
+
+		<!-- ncash-addons-plugins -->
+		<aerogear-otp-java.version>1.0.0</aerogear-otp-java.version>
+		<aerogear-crypto-java.version>0.1.0</aerogear-crypto-java.version>
+		
+		<!-- Dozor Version -->
+		<dozor.version>5.4.0</dozor.version>
+		<apache.common-pool.version>1.6</apache.common-pool.version>
+
+	</properties>
+	<modules>
+		<module>ncash-server-common</module>
+		<module>ncash-server-framework</module>
+		<module>ncash-server-modules</module>
+		<module>ncash-server-webapp</module>
+		<module>ncash-server-installer</module>
+	</modules>
+</project>
